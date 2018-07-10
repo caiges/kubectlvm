@@ -15,8 +15,8 @@ if [ ! -f "$KUBECTL_PATH/$VERSION/kubectl" ] || [ ! "$(readlink /usr/local/bin/k
   if [ ! -f $KUBECTL_PATH/$VERSION/kubectl ]; then
     # Determine which system we're on
     case "$(uname -s)" in
-      Linux*)  SYSTEM=Linux;;
-      Darwin*) SYSTEM=Mac;;
+      Linux*)  SYSTEM=linux;;
+      Darwin*) SYSTEM=darwin;;
       *)       echo "Unknown system!"; exit 1
     esac
 
