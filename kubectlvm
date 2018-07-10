@@ -1,0 +1,33 @@
+#!/bin/bash
+
+VERSION="v$1"
+KUBECTL_PATH=/usr/local/kubectl/versions
+
+if [ -z "$VERSION" ]; then
+  echo "No version specified!"
+  exit 1
+fi
+# If the requested version is not a symlink or the version reqeusted, install and update the link
+if [ ! -f "$KUBECTL_PATH/$VERSION/kubectl" ] || [ ! "$(readlink /usr/local/bin/kubectl)" = "$KUBECTL_PATH/$VERSION/kubectl" ]; then
+  # Request sudo
+  if [ $EUID != 0 ]; then
+      sudo "$0" "$@"
+      exit $?
+  fi
+
+  # If the version isn't installed, install it
+  if [ ! -f $KUBECTL_PATH/$VERSION/kubectl ]; then
+    # Determine which system we're on
+    case "$(uname -s)" in
+      Linux*)  SYSTEM=Linux;;
+      Darwin*) SYSTEM=Mac;;
+      *)       echo "Unknown system!"; exit 1
+    esac
+
+    mkdir -p /usr/local/kubectl/versions/$VERSION
+    curl -L "https://storage.googleapis.com/kubernetes-release/release/$VERSION/bin/$SYSTEM/amd64/kubectl" -o $KUBECTL_PATH/$VERSION/kubectl
+  fi
+
+  # Update the symlink
+  ln -sf $KUBECTL_PATH/$VERSION/kubectl /usr/local/bin/kubectl
+fi
