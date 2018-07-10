@@ -5,7 +5,8 @@ A kubectl version manager.
 ## Installation
 
 ```bash
-curl -L https://github.com/caiges/kubectlvm/blob/master/kubectlvm -o /usr/local/bin/kubectlvm
+curl -L https://raw.githubusercontent.com/caiges/kubectlvm/master/kubectlvm -o /usr/local/bin/kubectlvm
+chmod +x /usr/local/bin/kubectlvm
 ```
 
 ## Usage
