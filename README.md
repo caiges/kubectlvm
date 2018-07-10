@@ -2,6 +2,14 @@
 
 A kubectl version manager.
 
+## Installation
+
+```bash
+curl -L https://github.com/caiges/kubectlvm/blob/master/kubectlvm -o /usr/local/bin/kubectlvm
+```
+
+## Usage
+
 Install a specific version of kubectl:
 
 ```bash
@@ -19,7 +27,7 @@ That version is installed under `/usr/local/kubectl`:
 
 A symlink is created pointing to the requested version:
 
-```
+```bash
 ls -lah /usr/local/bin
 
 lrwxrwxrwx  1 root root   42 Jul  9 21:16 kubectl -> /usr/local/kubectl/versions/v1.8.4/kubectl
