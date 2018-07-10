@@ -22,6 +22,7 @@ if [ ! -f "$KUBECTL_PATH/$VERSION/kubectl" ] || [ ! "$(readlink /usr/local/bin/k
 
     mkdir -p /usr/local/kubectl/versions/$VERSION
     curl -L "https://storage.googleapis.com/kubernetes-release/release/$VERSION/bin/$SYSTEM/amd64/kubectl" -o $KUBECTL_PATH/$VERSION/kubectl
+    chmod +x $KUBECTL_PATH/$VERSION/kubectl
   fi
 
   # Update the symlink
